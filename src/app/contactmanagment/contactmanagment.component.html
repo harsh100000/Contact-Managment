@@ -1,0 +1,41 @@
+<div class="container">
+    <h1>Contact Manager</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>No.</th>
+                <th>Name</th>
+                <th>Phone</th>
+                <th>Email</th>
+                <th>Delete</th>
+                <th>Edit</th>
+            </tr>
+        </thead>
+        
+        <tbody>
+
+            <tr *ngFor="let contact of allContacts; let i = index">
+                <td>{{i+1}}</td>
+                <td>{{contact.contactName}}</td>
+                <td>{{contact.contactPhone}}</td>
+                <td><a href="mailto:sla_vianmail.ru">{{contact.contactEmail}}</a></td>
+                <td><button class="delete-btn" (click)="deleteContact(i)" >Delete</button></td>
+                <td><button class="delete-btn edit-btn" (click)="editContact(i)" >Edit</button></td>
+            </tr>
+
+        </tbody>
+    </table>
+    <div class="add-contact">
+        <h2>Add new contact:</h2>
+        <form>
+            <label for="name">Name:</label>
+            <input type="text" id="name" [(ngModel)]="contactName" [ngModelOptions]="{standalone: true}" required>
+            <label for="phone">Phone:</label>
+            <input type="text" id="phone" [(ngModel)]="contactPhone" [ngModelOptions]="{standalone: true}" required>
+            <label for="email">Email:</label>
+            <input type="email" id="email" [(ngModel)]="contactEmail" [ngModelOptions]="{standalone: true}" required>
+            <button type="submit" (click)="createContact()" >Add</button>
+        </form>
+    </div>
+    <p>Total count of contacts: {{allContacts.length}}</p>
+</div>
